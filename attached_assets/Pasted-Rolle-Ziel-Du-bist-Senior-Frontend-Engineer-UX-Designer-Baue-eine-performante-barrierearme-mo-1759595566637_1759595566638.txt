@@ -1,0 +1,189 @@
+Rolle & Ziel
+Du bist Senior Frontend Engineer + UX-Designer. Baue eine performante, barrierearme, mobile-first Website für HALFMANN Logistics (Fahrzeuglogistik). Tech-Stack: React 18 + Vite + TypeScript + Tailwind CSS + Framer Motion + lucide-react. Ergebnis: lauffähiges Projekt inkl. Routing, Komponentenbibliothek, README und sehr gute Lighthouse-Scores (mobil ≥95 in allen Kategorien).
+
+1) Brand & Farben (vom Logo abgeleitet)
+Primär:
+--hlf-blue-900: #1D3A8C
+--hlf-blue-700: #1868B0
+--hlf-blue-500: #1078C0
+--hlf-blue-400: #00AEEF
+
+Neutrals:
+--hlf-gray-900: #1F2937
+--hlf-gray-600: #4B5563
+--hlf-gray-100: #F5F7FA
+--hlf-white:    #FFFFFF
+
+Gradient:
+--hlf-gradient: linear-gradient(90deg, #1D3A8C 0%, #1078C0 55%, #00AEEF 100%);
+
+
+Verwendung
+
+Header/Footer/Headlines: --hlf-blue-900
+
+CTA Primary: gefüllt mit --hlf-gradient (weiße Schrift), Hover: leicht heller + Schatten
+
+CTA Secondary: Outline --hlf-blue-500 auf weißem Hintergrund
+
+Sektionen im Wechsel: Weiß / --hlf-gray-100
+
+Fließtext: --hlf-gray-900 (AA-Kontrast sicherstellen)
+
+2) Struktur & Seiten
+
+Home (Hero, Leistungen, Warum HALFMANN, Referenzen/Logo-Wall, Prozess-Steps, FAQ, Abschluss-CTA)
+
+Leistungen (Detailsektionen + Akkordeon-FAQ)
+
+Referenzen (Case-Cards, Logos, Zitate)
+
+Über uns (Mission, Timeline, Zertifikate)
+
+Jobs (Stellenliste + Bewerbungsformular)
+
+Kontakt (Form, Karte, Kontaktdaten, Öffnungszeiten)
+
+Rechtliches (Impressum, Datenschutz)
+
+Navigation
+
+Desktop: klare Top-Nav mit sanfter Underline-Animation
+
+Mobile: Off-Canvas (Burger), Sticky Bottom Bar mit „Anrufen“ (tel:) & „Angebot anfordern“
+
+3) Elemente, die an die Referenzen angelehnt sein sollen (nur Patterns, kein Code kopieren)
+
+tgc-gmbh.com
+
+Saubere Typo-Skala und großzügiges Spacing → Übernehmen: Luftige Sections mit 64–96px Vertikal-Spacing, klare H-Hierarchie.
+
+Icon-Karten für Leistungen → Erstelle FeatureCard (Icon, Titel, 2–3 Bullet-Points).
+
+spedition-yilmaz.de
+
+Hero mit kräftigem Farbblock + prominenter CTA → Übernehmen: Vollflächiger Gradient-Hero (Logo/Headline/2 CTAs), Scroll-Indicator.
+
+Kontakt-Promobox (Telefon + schnelle Angebotsanfrage) → Erstelle ContactTeaser (mobil sticky).
+
+ars-altmann.de/unternehmen
+
+Timeline/Meilensteine visuell → Übernehmen: Timeline-Komponente (Jahre links, Inhalte rechts, animierte Dots).
+
+Logo-Wall mit dezenter Graufärbung & Hover-Aufhellung → Erstelle LogoWall.
+
+jvg-autologistik.de
+
+Steps/Prozess (3–4 Schritte) mit Icons → Erstelle Steps-Komponente (nummeriert, animierter Progress).
+
+CTA-Abschlusssektion mit starker Kontrastfläche → Übernehmen: Gradient-Block mit großer Headline + Button.
+
+4) UX/Barrierefreiheit/SEO
+
+Mobile-first, Sticky Bottom Bar (links tel:, rechts Angebot)
+
+Fokus-Ringe sichtbar, Skip-Link, semantische Landmarks, ARIA-Labels
+
+Alt-Texte, verständliche Linktexte
+
+Meta-Tags (Title/Description/OG/Twitter), Schema.org Organization + LocalBusiness
+
+Formulartauglichkeit: Fehlerhinweise ARIA-live
+
+5) Performance
+
+Lighthouse mobil ≥95 (Performance/Best Practices/SEO/Accessibility)
+
+Bilder: responsive picture + srcSet, lazy, AVIF (Fallback JPG/PNG)
+
+Code-Splitting via Vite, treeshaken, nur Tailwind-Styles nutzen
+
+6) Tech-Vorgaben & Projektstruktur
+
+Stack: React 18, Vite, TypeScript, Tailwind, Framer Motion, lucide-react, Zod (Form-Validation)
+
+Ordner:
+
+/src
+  /components  (Navbar, Footer, Hero, CTAButton, FeatureCard, Steps, Timeline, LogoWall, Testimonial, Accordion, ContactTeaser, Form, Toast)
+  /pages       (Home, Leistungen, Referenzen, UeberUns, Jobs, Kontakt, Rechtliches)
+  /assets      (logo, platzhalter)
+  /lib         (seo.ts, analytics.ts)
+  /styles      (globals.css)
+  /routes      (Router)
+
+
+Tailwind Theme: mappe Brand-Tokens auf theme.extend.colors.hlf + Utility für Gradient (z. B. bg-hlf-gradient)
+
+Formulare: POST zu Mock-Endpoint; Client-Validation mit Zod; Loading/Success/Error-Zustände + Toasts
+
+Analytics: useAnalytics() Hook (lokal – CTA-Klicks, Nav-Klicks)
+
+7) Startinhalte (de)
+
+Hero
+
+H1: „Ihr Fahrzeug in besten Händen.“
+
+Subline: „Sichere Fahrzeuglogistik – termingenau, transparent, europaweit.“
+
+CTA primary: „Angebot anfordern“ | CTA secondary: „Jetzt anrufen“
+
+Proof-Points
+
+„> 25.000 Transporte/Jahr“ · „Europaweites Netzwerk“ · „Zertifizierte Prozesse“ · „Persönlicher Ansprechpartner“
+
+FAQ (Beispiele)
+
+„Wie schnell erhalte ich ein Angebot?“
+
+„Welche Fahrzeugtypen transportiert ihr?“
+
+„Wie läuft die Übergabe ab?“
+
+Kontakt (Dummy)
+
+Tel: +49 (0) XXX / XXXXXXX · E-Mail: info@hlogistics.de
+ · Adresse Platzhalter
+
+8) Akzeptanzkriterien (DoD)
+
+CI-Farben & Gradient sichtbar konsistent; CTAs stechen deutlich heraus (AA-Kontrast).
+
+Mobile: Sticky Bottom Bar, Off-Canvas-Nav, große Touch-Targets.
+
+Komponentenbibliothek vorhanden und wiederverwendbar.
+
+Jede Seite mit korrekter H-Struktur, Meta/OG, Schema.org.
+
+Performance/SEO/Accessibility je ≥95 (mobil).
+
+README mit Setup/Build/Deploy (Replit).
+
+Keine fremden UI-Kits/CSS-Frameworks außer Tailwind.
+
+9) Konkrete Aufgabenliste (für den Code-Agent)
+
+Projekt initialisieren (Vite + React + TS + Tailwind).
+
+Tailwind Theme mit hlf-Farben + bg-hlf-gradient Utility.
+
+Layout: Navbar (Desktop + Off-Canvas), Footer, Container/Grid.
+
+Komponenten bauen: Hero, CTAButton, FeatureCard, Steps, Timeline, LogoWall, Testimonial, Accordion, ContactTeaser, Form, Toast.
+
+Seiten & Routing anlegen, SEO-Helper integrieren.
+
+Sticky Bottom Bar (mobil) implementieren.
+
+Bilder-Pipeline (AVIF + Lazy).
+
+A11y-Pass & Lighthouse-Optimierung.
+
+README schreiben.
+
+10) Bonus: Typografie
+
+System-Sans oder Inter; Skala: h1 36/44, h2 28/36, h3 22/30, Body 16/26, Buttons 16/24 fett.
+
+Max-Zeilenbreite ~70–80 Zeichen, großzügiges Line-Height.
