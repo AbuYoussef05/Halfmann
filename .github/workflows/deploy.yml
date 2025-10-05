@@ -12,20 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install deps (client)
-        run: npm install
-        working-directory: client
+      # Install im client, aber vom Root aus
+      - name: Install deps
+        run: npm install --prefix client
 
-      - name: Build (client)
-        run: |
-          npm run build
-          cp dist/public/index.html dist/public/404.html
-        working-directory: client
+      # Build vom Root aus starten (Vite liest deine vite.config.ts im Root)
+      - name: Build
+        run: npm run build --prefix client
+
+      # SPA-Fallback: jetzt stimmen die Pfade (Root -> dist/public)
+      - name: Add 404.html
+        run: cp dist/public/index.html dist/public/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
