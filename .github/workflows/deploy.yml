@@ -12,18 +12,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install & Build
+
+      - name: Install deps (client)
+        run: npm install
+        working-directory: client
+
+      - name: Build (client)
         run: |
-          npm ci --prefix client
-          npm run build --prefix client
-          # SPA-Fallback: 404.html -> index.html
+          npm run build
           cp dist/public/index.html dist/public/404.html
+        working-directory: client
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/public
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
