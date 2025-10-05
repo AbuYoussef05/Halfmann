@@ -1,7 +1,9 @@
 name: Deploy Vite to GitHub Pages
+
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]   # bei jedem Push auf main deployen
+
 permissions:
   contents: read
   pages: write
@@ -10,27 +12,36 @@ permissions:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+    steps:
+      # --- 1. Repository auschecken
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --- 2. Node installieren
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install deps (client)
-        run: npm install
-        working-directory: client
+      # --- 3. Dependencies installieren (aus dem client-Ordner)
+      - name: Install dependencies
+        run: npm install --prefix client
 
-      - name: Build (client)
-        run: |
-          npm run build
-          cp dist/public/index.html dist/public/404.html
-        working-directory: client
+      # --- 4. Projekt bauen
+      - name: Build Vite project
+        run: npm run build --prefix client
 
+      # --- 5. SPA-Fallback: 404.html erzeugen
+      - name: Create 404.html fallback
+        run: cp dist/public/index.html dist/public/404.html
+
+      # --- 6. Artefakt (fertige Seite) hochladen
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/public
 
+      # --- 7. Auf GitHub Pages veröffentlichen
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
