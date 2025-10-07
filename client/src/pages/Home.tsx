@@ -1,10 +1,8 @@
 import Hero from '@/components/Hero';
 import FeatureCard from '@/components/FeatureCard';
 import Steps from '@/components/Steps';
-import LogoWall from '@/components/LogoWall';
-import Testimonial from '@/components/Testimonial';
 import ContactTeaser from '@/components/ContactTeaser';
-import { Truck, Shield, Clock, Users, Globe, Award, MessageSquare, FileCheck, CheckCircle } from 'lucide-react';
+import { Truck, Shield, Clock, Users, Globe, FileText, MessageSquare, FileCheck, CheckCircle, Eye, Zap, Lock } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -17,8 +15,8 @@ export default function Home() {
     {
       icon: Truck,
       title: 'Fahrzeugtransport',
-      description: 'Professioneller Transport aller Fahrzeugtypen mit modernster Ausrüstung',
-      features: ['PKW & LKW', 'Oldtimer & Spezialfahrzeuge', 'Baumaschinen']
+      description: 'PKW, SUV und leichte Nutzfahrzeuge/Transporter bis 7,5 t',
+      features: ['Neu- und Gebrauchtwagen', 'Einzel- und Flottentransporte', 'Deutschlandweit & angrenzende Länder']
     },
     {
       icon: Shield,
@@ -30,25 +28,48 @@ export default function Home() {
       icon: Clock,
       title: 'Termintreue',
       description: 'Garantierte pünktliche Lieferung zu Ihrem Wunschtermin',
-      features: ['Express-Option verfügbar', 'Live-Tracking in Echtzeit', '24/7 Kundensupport']
+      features: ['Express-Option verfügbar', 'Live-Tracking in Echtzeit', 'Fester Ansprechpartner']
+    }
+  ];
+
+  const strengths = [
+    {
+      icon: Users,
+      title: 'Engagiertes Team',
+      description: 'Dynamische Spezialisten mit Leidenschaft für Fahrzeuglogistik und höchste Servicequalität.'
+    },
+    {
+      icon: Eye,
+      title: 'Transparente Abwicklung',
+      description: 'Fester Ansprechpartner, proaktive Status-Updates, dokumentierte Übergaben.'
+    },
+    {
+      icon: Zap,
+      title: 'Flexible Lösungen',
+      description: 'Einzel- bis Flottenbewegungen, Termin- oder Expressfahrten nach Bedarf.'
+    },
+    {
+      icon: Lock,
+      title: 'Sicher & zuverlässig',
+      description: 'Gesicherte Transporte, Check-in/Check-out-Protokolle mit Fotos.'
     }
   ];
 
   const whyUs = [
     {
       icon: Users,
-      title: 'Erfahrenes Team',
-      description: 'Über 25 Jahre Erfahrung in der Fahrzeuglogistik mit hochqualifizierten Mitarbeitern'
+      title: 'Engagiertes Team',
+      description: 'Jung, flexibel und serviceorientiert – wir kümmern uns zuverlässig um jeden Transportauftrag.'
     },
     {
       icon: Globe,
       title: 'Europaweites Netzwerk',
-      description: 'Flächendeckendes Partnernetzwerk für nahtlose Transporte in ganz Europa'
+      description: 'Flächendeckendes Partnernetzwerk für nahtlose Transporte in Deutschland und angrenzenden Ländern'
     },
     {
-      icon: Award,
-      title: 'Zertifizierte Qualität',
-      description: 'ISO-zertifizierte Prozesse und regelmäßige Qualitätskontrollen'
+      icon: FileText,
+      title: 'OEM-konforme Prozesse',
+      description: 'Klare Abläufe von Abholung bis Zustellung – mit Übergabeprotokoll, Foto-Dokumentation und fester Kommunikation.'
     }
   ];
 
@@ -79,46 +100,27 @@ export default function Home() {
     }
   ];
 
-  const logos = [
-    { name: 'BMW' },
-    { name: 'Mercedes' },
-    { name: 'VW' },
-    { name: 'Audi' },
-    { name: 'Porsche' },
-    { name: 'Tesla' }
-  ];
-
-  const testimonials = [
-    {
-      quote: 'Zuverlässiger Partner für unsere Fahrzeuglogistik. Immer pünktlich und professionell. Die Zusammenarbeit funktioniert reibungslos.',
-      author: 'Michael Schmidt',
-      company: 'Autohaus Schmidt GmbH',
-      role: 'Geschäftsführer'
-    },
-    {
-      quote: 'Exzellenter Service und transparente Kommunikation. Das Live-Tracking gibt uns die Sicherheit, die wir brauchen.',
-      author: 'Sarah Weber',
-      company: 'Weber Automobil AG',
-      role: 'Logistikleiterin'
-    }
-  ];
 
   const faqs = [
     {
-      question: 'Wie schnell erhalte ich ein Angebot?',
-      answer: 'In der Regel erhalten Sie innerhalb von 24 Stunden ein detailliertes Angebot. Bei dringenden Anfragen melden wir uns auch deutlich schneller bei Ihnen.'
-    },
-    {
       question: 'Welche Fahrzeugtypen transportiert ihr?',
-      answer: 'Wir transportieren alle gängigen Fahrzeugtypen: PKW, LKW, Transporter, Oldtimer, Motorräder, Baumaschinen und Spezialfahrzeuge. Sprechen Sie uns einfach an!'
+      answer: 'PKW, SUV und leichte Nutzfahrzeuge/Transporter bis 7,5 t.'
     },
     {
-      question: 'Wie läuft die Übergabe ab?',
-      answer: 'Bei der Übergabe erfolgt eine genaue Fahrzeuginspektion. Eventuelle Schäden werden protokolliert. Sie erhalten alle Dokumente und können das Fahrzeug sofort übernehmen.'
+      question: 'Wie schnell erhalte ich ein Angebot?',
+      answer: 'In der Regel am gleichen Werktag, spätestens innerhalb von 24 Stunden.'
     },
     {
-      question: 'Ist eine Versicherung im Preis enthalten?',
-      answer: 'Ja, eine Transportversicherung ist standardmäßig in unseren Preisen enthalten. Auf Wunsch können Sie den Versicherungsschutz auch erweitern.'
+      question: 'Einzel- oder Sammeltransporte?',
+      answer: 'Beides. Wir bündeln sinnvoll oder fahren dediziert – je nach Termin und Volumen.'
+    },
+    {
+      question: 'Wie laufen Abholung und Übergabe ab?',
+      answer: 'Check-in/Check-out mit Protokoll und Foto-Dokumentation, auf Wunsch mit Zustandsbericht.'
+    },
+    {
+      question: 'Gibt es Lager- oder Standflächen?',
+      answer: 'Ja. Fahrzeuglager/Compound Dortmund für kurz- bis mittelfristige Zwischenlagerung.'
     }
   ];
 
@@ -147,6 +149,24 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-hlf-gray-100">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-hlf-blue-900 mb-4" data-testid="text-strengths-title">
+              Unsere Stärken
+            </h2>
+            <p className="text-lg text-hlf-gray-600">
+              Was uns auszeichnet
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {strengths.map((item) => (
+              <FeatureCard key={item.title} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-hlf-blue-900 mb-4" data-testid="text-why-title">
               Warum HALFMANN?
             </h2>
@@ -159,12 +179,6 @@ export default function Home() {
               <FeatureCard key={item.title} {...item} />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <LogoWall logos={logos} title="Unsere Partner vertrauen uns" />
         </div>
       </section>
 
@@ -183,21 +197,6 @@ export default function Home() {
       </section>
 
       <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-hlf-blue-900 mb-4" data-testid="text-testimonials-title">
-              Das sagen unsere Kunden
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Testimonial key={index} {...testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-hlf-gray-100">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-hlf-blue-900 mb-4" data-testid="text-faq-title">
@@ -221,7 +220,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-hlf-gray-100">
         <div className="container mx-auto px-4">
           <ContactTeaser />
         </div>
