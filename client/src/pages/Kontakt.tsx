@@ -11,7 +11,8 @@ export default function Kontakt() {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    botcheck: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -20,14 +21,54 @@ export default function Kontakt() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: 'Nachricht gesendet!',
-        description: 'Wir melden uns in Kürze bei Ihnen.',
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '358dc6fa-7d0f-4b8d-ad94-2c54a7439145',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          botcheck: formData.botcheck,
+          from_name: 'HALFMANN Logistics Website',
+          subject: 'Neue Kontaktanfrage von HALFMANN Logistics',
+        })
       });
-      setFormData({ name: '', email: '', phone: '', message: '' });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: 'Nachricht gesendet!',
+          description: 'Wir melden uns in Kürze bei Ihnen.',
+        });
+        setFormData({ name: '', email: '', phone: '', message: '', botcheck: false });
+      } else {
+        // Spezifische Fehlerbehandlung
+        const errorMessage = result.message || 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.';
+        
+        toast({
+          title: 'Fehler beim Senden',
+          description: errorMessage.includes('not allowed') 
+            ? 'Das Formular wird auf der finalen Domain funktionieren. Bitte testen Sie es nach dem Deployment auf one.com oder GitHub Pages.'
+            : errorMessage,
+          variant: 'destructive'
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Netzwerkfehler',
+        description: 'Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.',
+        variant: 'destructive'
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -51,6 +92,16 @@ export default function Kontakt() {
                 Senden Sie uns eine Nachricht
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field for spam protection */}
+                <input 
+                  type="checkbox" 
+                  name="botcheck" 
+                  className="hidden" 
+                  style={{ display: 'none' }}
+                  checked={formData.botcheck}
+                  onChange={(e) => setFormData({ ...formData, botcheck: e.target.checked })}
+                />
+                
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-hlf-gray-900 mb-2">
                     Name *
@@ -128,8 +179,8 @@ export default function Kontakt() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-hlf-blue-900 mb-1">Telefon</h3>
-                    <a href="tel:+49XXXXXXXXX" className="text-hlf-gray-600 hover:text-hlf-blue-700" data-testid="link-phone">
-                      +49 (0) XXX / XXXXXXX
+                    <a href="tel:+4923118983985" className="text-hlf-gray-600 hover:text-hlf-blue-700" data-testid="link-phone">
+                      0231 18983985
                     </a>
                   </div>
                 </div>
@@ -151,38 +202,26 @@ export default function Kontakt() {
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-hlf-blue-900 mb-1">Adresse</h3>
-                    <p className="text-hlf-gray-600">
-                      Musterstraße 123<br />
-                      12345 Musterstadt<br />
-                      Deutschland
-                    </p>
+                    <h3 className="font-semibold text-hlf-blue-900 mb-1">Verwaltung</h3>
+                    <a href="https://maps.google.com/?q=Hohestraße%20111%2C%2044139%20Dortmund" target="_blank" rel="noopener noreferrer" className="text-hlf-gray-600 hover:text-hlf-blue-700">
+                      Hohestraße 111<br />
+                      44139 Dortmund
+                    </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-lg bg-hlf-gradient">
-                    <Clock className="h-6 w-6 text-white" />
+                    <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-hlf-blue-900 mb-1">Öffnungszeiten</h3>
-                    <p className="text-hlf-gray-600">
-                      Mo-Fr: 08:00 - 18:00 Uhr<br />
-                      Sa: 09:00 - 14:00 Uhr<br />
-                      So: Geschlossen
-                    </p>
+                    <h3 className="font-semibold text-hlf-blue-900 mb-1">Fahrzeuglager / Compound</h3>
+                    <a href="https://maps.google.com/?q=Treibstraße%2030%2C%2044147%20Dortmund" target="_blank" rel="noopener noreferrer" className="text-hlf-gray-600 hover:text-hlf-blue-700">
+                      Treibstraße 30<br />
+                      44147 Dortmund
+                    </a>
                   </div>
                 </div>
-              </Card>
-
-              <Card className="p-6 bg-hlf-blue-50">
-                <h3 className="font-semibold text-hlf-blue-900 mb-2">24/7 Notfall-Hotline</h3>
-                <p className="text-sm text-hlf-gray-600 mb-3">
-                  Für dringende Transportanfragen außerhalb der Geschäftszeiten
-                </p>
-                <a href="tel:+49XXXXXXXXX" className="text-lg font-bold text-hlf-blue-700 hover:text-hlf-blue-900" data-testid="link-emergency">
-                  +49 (0) XXX / XXXXXXX
-                </a>
               </Card>
             </div>
           </div>
