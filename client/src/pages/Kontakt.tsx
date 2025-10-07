@@ -4,68 +4,57 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Kontakt() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    botcheck: false
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStartTime] = useState(Date.now());
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Zeitfalle: mindestens 2s seit Seitenload (Bot-Schutz)
+    const timeSinceLoad = Date.now() - formStartTime;
+    if (timeSinceLoad < 2000) {
+      toast({ title: 'Zu schnell', description: 'Bitte warten Sie einen Moment.' });
+      return;
+    }
+
     setIsSubmitting(true);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Web3Forms Pflichtfelder
+    fd.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY || '358dc6fa-7d0f-4b8d-ad94-2c54a7439145');
+    fd.append('from_name', 'HALFMANN Logistics Website');
+    fd.append('subject', 'Neue Kontaktanfrage von HALFMANN Logistics');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: '358dc6fa-7d0f-4b8d-ad94-2c54a7439145',
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          botcheck: formData.botcheck,
-          from_name: 'HALFMANN Logistics Website',
-          subject: 'Neue Kontaktanfrage von HALFMANN Logistics',
-        })
+        body: fd // keine eigenen Header setzen!
       });
 
-      const result = await response.json();
+      let data: any = {};
+      try { data = await res.json(); } catch {}
 
-      if (result.success) {
-        toast({
-          title: 'Nachricht gesendet!',
-          description: 'Wir melden uns in Kürze bei Ihnen.',
-        });
-        setFormData({ name: '', email: '', phone: '', message: '', botcheck: false });
+      if (data?.success) {
+        toast({ title: 'Nachricht gesendet!', description: 'Wir melden uns in Kürze bei Ihnen.' });
+        form.reset();
+      } else if (data?.message) {
+        toast({ title: 'Fehler beim Senden', description: data.message, variant: 'destructive' });
       } else {
-        // Spezifische Fehlerbehandlung
-        const errorMessage = result.message || 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.';
-        
-        toast({
-          title: 'Fehler beim Senden',
-          description: errorMessage.includes('not allowed') 
-            ? 'Das Formular wird auf der finalen Domain funktionieren. Bitte testen Sie es nach dem Deployment auf one.com oder GitHub Pages.'
-            : errorMessage,
-          variant: 'destructive'
-        });
+        // Fallback: native Submit (um Dev/CORS-Previews zu umgehen)
+        form.action = 'https://api.web3forms.com/submit';
+        form.method = 'POST';
+        form.submit();
       }
-    } catch (error) {
-      toast({
-        title: 'Netzwerkfehler',
-        description: 'Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.',
-        variant: 'destructive'
-      });
+    } catch (err: any) {
+      // Fallback: native Submit
+      form.action = 'https://api.web3forms.com/submit';
+      form.method = 'POST';
+      form.submit();
     } finally {
       setIsSubmitting(false);
     }
@@ -91,76 +80,45 @@ export default function Kontakt() {
               <h2 className="text-3xl font-bold text-hlf-blue-900 mb-8" data-testid="text-contact-form-title">
                 Senden Sie uns eine Nachricht
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Honeypot field for spam protection */}
-                <input 
-                  type="checkbox" 
-                  name="botcheck" 
-                  className="hidden" 
-                  style={{ display: 'none' }}
-                  checked={formData.botcheck}
-                  onChange={(e) => setFormData({ ...formData, botcheck: e.target.checked })}
-                />
-                
+
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {/* Honeypot (unsichtbar) */}
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-hlf-gray-900 mb-2">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    data-testid="input-name"
-                  />
+                  <label htmlFor="name" className="block text-sm font-medium text-hlf-gray-900 mb-2">Name *</label>
+                  <Input id="name" name="name" type="text" required data-testid="input-name" />
                 </div>
+
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-hlf-gray-900 mb-2">
-                    E-Mail *
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    data-testid="input-email"
-                  />
+                  <label htmlFor="email" className="block text-sm font-medium text-hlf-gray-900 mb-2">E-Mail *</label>
+                  <Input id="email" name="email" type="email" required data-testid="input-email" />
                 </div>
+
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-hlf-gray-900 mb-2">
-                    Telefon
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    data-testid="input-phone"
-                  />
+                  <label htmlFor="phone" className="block text-sm font-medium text-hlf-gray-900 mb-2">Telefon</label>
+                  <Input id="phone" name="phone" type="tel" data-testid="input-phone" />
                 </div>
+
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-hlf-gray-900 mb-2">
-                    Ihre Nachricht *
-                  </label>
-                  <Textarea
-                    id="message"
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    data-testid="input-message"
-                  />
+                  <label htmlFor="message" className="block text-sm font-medium text-hlf-gray-900 mb-2">Ihre Nachricht *</label>
+                  <Textarea id="message" name="message" required rows={6} data-testid="input-message" />
                 </div>
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="bg-hlf-gradient text-white w-full"
-                  disabled={isSubmitting}
-                  data-testid="button-submit"
-                >
-                  {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
+
+                {/* DSGVO */}
+                <label className="flex items-start gap-3 text-sm">
+                  <input type="checkbox" required className="mt-1" />
+                  <span>
+                    Ich stimme der Verarbeitung meiner Daten gemäß{' '}
+                    <a href="/datenschutz" className="underline text-hlf-blue-700">Datenschutzerklärung</a> zu.
+                  </span>
+                </label>
+
+                <Button type="submit" size="lg" className="bg-hlf-gradient text-white w-full" disabled={isSubmitting} data-testid="button-submit">
+                  {isSubmitting ? 'Wird gesendet…' : 'Nachricht senden'}
                 </Button>
               </form>
             </div>
