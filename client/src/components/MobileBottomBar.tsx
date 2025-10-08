@@ -11,7 +11,7 @@ export default function MobileBottomBar() {
           asChild
           data-testid="button-mobile-call"
         >
-          <a href="tel:+49XXXXXXXXX">
+          <a href="tel:+4923118983985">
             <Phone className="mr-2 h-5 w-5" />
             Anrufen
           </a>

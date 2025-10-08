@@ -8,54 +8,48 @@ export default function Impressum() {
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Angaben gemäß § 5 TMG</h2>
+            <p className="text-hlf-gray-600 mb-6">
+              <strong>Halfmann Logistics GmbH</strong><br />
+              Hohestraße 111<br />
+              44139 Dortmund
+            </p>
+
+            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Handelsregister</h2>
             <p className="text-hlf-gray-600 mb-4">
-              HALFMANN Logistics GmbH<br />
-              Musterstraße 123<br />
-              12345 Musterstadt<br />
-              Deutschland
+              HRB 35823<br />
+              Registergericht: Amtsgericht Dortmund
             </p>
 
             <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Vertreten durch</h2>
             <p className="text-hlf-gray-600 mb-4">
-              Geschäftsführer: Max Mustermann
+              Salloum Barriga, Ibrahim
             </p>
 
             <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Kontakt</h2>
             <p className="text-hlf-gray-600 mb-4">
-              Telefon: +49 (0) XXX / XXXXXXX<br />
+              Telefon: 0231 18983985<br />
               E-Mail: info@hlogistics.de
             </p>
 
-            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Registereintrag</h2>
+            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Postadresse</h2>
             <p className="text-hlf-gray-600 mb-4">
-              Eintragung im Handelsregister<br />
-              Registergericht: Amtsgericht Musterstadt<br />
-              Registernummer: HRB 12345
+              Treibstraße 30<br />
+              44147 Dortmund
             </p>
 
             <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Umsatzsteuer-ID</h2>
             <p className="text-hlf-gray-600 mb-4">
               Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-              DE123456789
+              DE366314956
             </p>
 
-            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Verbraucherstreitbeilegung/Universalschlichtungsstelle</h2>
             <p className="text-hlf-gray-600 mb-4">
-              Max Mustermann<br />
-              Musterstraße 123<br />
-              12345 Musterstadt
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
             </p>
 
-            <h2 className="text-2xl font-bold text-hlf-blue-900 mt-8 mb-4">Haftungsausschluss</h2>
-            <h3 className="text-xl font-semibold text-hlf-blue-900 mt-6 mb-3">Haftung für Inhalte</h3>
-            <p className="text-hlf-gray-600 mb-4">
-              Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-            </p>
-
-            <h3 className="text-xl font-semibold text-hlf-blue-900 mt-6 mb-3">Haftung für Links</h3>
-            <p className="text-hlf-gray-600 mb-4">
-              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+            <p className="text-hlf-gray-600 text-sm mt-8">
+              Quelle: <a href="https://www.e-recht24.de" target="_blank" rel="noopener noreferrer" className="text-hlf-blue-700 underline">e-recht24.de</a>
             </p>
           </div>
         </div>

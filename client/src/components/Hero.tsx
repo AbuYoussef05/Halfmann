@@ -18,10 +18,10 @@ export default function Hero() {
             Ihr Fahrzeug in besten Händen.
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl leading-relaxed" data-testid="text-hero-subtitle">
-            Sichere Fahrzeuglogistik – termingenau, transparent, europaweit.
+            Professionelle Fahrzeuglogistik für Händler, OEMs und Leasingunternehmen.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button 
               size="lg" 
               className="bg-white text-hlf-blue-900 hover:bg-white/90 font-semibold text-lg px-8"
@@ -37,27 +37,8 @@ export default function Hero() {
               asChild
               data-testid="button-hero-call"
             >
-              <a href="tel:+49XXXXXXXXX">Jetzt anrufen</a>
+              <a href="tel:+4923118983985">Jetzt anrufen</a>
             </Button>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-white/20">
-            <div className="text-center sm:text-left">
-              <div className="text-2xl font-bold text-white mb-1" data-testid="text-stat-1">&gt; 25.000</div>
-              <div className="text-sm text-white/80">Transporte/Jahr</div>
-            </div>
-            <div className="text-center sm:text-left">
-              <div className="text-2xl font-bold text-white mb-1" data-testid="text-stat-2">Europaweit</div>
-              <div className="text-sm text-white/80">Netzwerk</div>
-            </div>
-            <div className="text-center sm:text-left">
-              <div className="text-2xl font-bold text-white mb-1" data-testid="text-stat-3">Zertifiziert</div>
-              <div className="text-sm text-white/80">Prozesse</div>
-            </div>
-            <div className="text-center sm:text-left">
-              <div className="text-2xl font-bold text-white mb-1" data-testid="text-stat-4">Persönlich</div>
-              <div className="text-sm text-white/80">Ansprechpartner</div>
-            </div>
           </div>
         </div>
       </div>

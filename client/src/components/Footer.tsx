@@ -18,9 +18,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li><Link href="/leistungen" className="text-sm text-white/80 hover:text-white transition-colors" data-testid="link-footer-leistungen">Leistungen</Link></li>
-              <li><Link href="/referenzen" className="text-sm text-white/80 hover:text-white transition-colors" data-testid="link-footer-referenzen">Referenzen</Link></li>
               <li><Link href="/ueber-uns" className="text-sm text-white/80 hover:text-white transition-colors" data-testid="link-footer-ueber-uns">Über uns</Link></li>
-              <li><Link href="/jobs" className="text-sm text-white/80 hover:text-white transition-colors" data-testid="link-footer-jobs">Jobs</Link></li>
               <li><Link href="/kontakt" className="text-sm text-white/80 hover:text-white transition-colors" data-testid="link-footer-kontakt">Kontakt</Link></li>
             </ul>
           </div>
@@ -30,7 +28,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-white/80">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+49XXXXXXXXX" className="hover:text-white transition-colors" data-testid="link-footer-phone">+49 (0) XXX / XXXXXXX</a>
+                <a href="tel:+4923118983985" className="hover:text-white transition-colors" data-testid="link-footer-phone">0231 18983985</a>
               </li>
               <li className="flex items-center gap-2 text-sm text-white/80">
                 <Mail className="h-4 w-4" />
@@ -38,7 +36,16 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-white/80">
                 <MapPin className="h-4 w-4 mt-1" />
-                <span>Musterstraße 123<br />12345 Musterstadt</span>
+                <div>
+                  <div className="mb-2">
+                    <span className="font-semibold">Verwaltung:</span><br />
+                    Hohestraße 111<br />44139 Dortmund
+                  </div>
+                  <div>
+                    <span className="font-semibold">Compound:</span><br />
+                    Treibstraße 30<br />44147 Dortmund
+                  </div>
+                </div>
               </li>
             </ul>
           </div>

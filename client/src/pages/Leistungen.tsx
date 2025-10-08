@@ -1,6 +1,6 @@
 import FeatureCard from '@/components/FeatureCard';
 import ContactTeaser from '@/components/ContactTeaser';
-import { Truck, Car, Plane, Ship, Package, Wrench } from 'lucide-react';
+import { Truck, Car, Plane, Ship, Warehouse, Key } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -17,22 +17,22 @@ export default function Leistungen() {
       features: ['Neu- und Gebrauchtwagen', 'Luxus- und Sportfahrzeuge', 'Geschlossener Transport verfügbar']
     },
     {
-      icon: Truck,
-      title: 'LKW & Transporter',
-      description: 'Professioneller Transport von Nutzfahrzeugen und Transportern',
-      features: ['Bis 40 Tonnen', 'Spezialanhänger verfügbar', 'Überführung europaweit']
-    },
-    {
-      icon: Wrench,
+      icon: Key,
       title: 'Oldtimer & Klassiker',
       description: 'Besonders schonender Transport für historische und wertvolle Fahrzeuge',
       features: ['Klimatisierter Transport', 'Spezielle Ladungssicherung', 'Vollkaskoschutz']
     },
     {
-      icon: Package,
-      title: 'Baumaschinen',
-      description: 'Transport von Baumaschinen und Spezialfahrzeugen aller Art',
-      features: ['Schwertransporte', 'Sondergenehmigungen', 'Begleitfahrzeuge']
+      icon: Truck,
+      title: 'Transporter bis 7,5 t',
+      description: 'PKW, SUV und leichte Nutzfahrzeuge/Transporter bis 7,5 t',
+      features: ['Lieferwagen & Kastenwagen', 'Kleinbusse', 'Deutschlandweit & angrenzende Länder']
+    },
+    {
+      icon: Warehouse,
+      title: 'Fahrzeuglagerung',
+      description: 'Gesicherte Stellflächen im Compound Dortmund inkl. Ein-/Ausgangskontrolle, Foto-Dokumentation und kurzfristiger Verfügbarkeit',
+      features: ['Kurz- bis mittelfristige Lagerung', 'Gesichertes Gelände', 'Check-in/Check-out Protokolle']
     },
     {
       icon: Plane,
@@ -42,9 +42,9 @@ export default function Leistungen() {
     },
     {
       icon: Ship,
-      title: 'Import & Export',
-      description: 'Internationale Fahrzeuglogistik weltweit',
-      features: ['Zollabwicklung', 'Hafenlogistik', 'Dokumentenservice']
+      title: 'Überführungen & Flotten',
+      description: 'Einzel- bis Flottenbewegungen nach Bedarf',
+      features: ['Einzelfahrten', 'Sammeltransporte', 'Flottenüberführungen']
     }
   ];
 
@@ -54,16 +54,12 @@ export default function Leistungen() {
       answer: 'Alle Fahrzeuge werden professionell mit geprüften Spanngurten gesichert. Bei wertvollen Fahrzeugen bieten wir geschlossene Transporter mit zusätzlichem Schutz an.'
     },
     {
-      question: 'Können Sie auch Sondertransporte durchführen?',
-      answer: 'Ja, wir verfügen über Spezialausrüstung und die notwendigen Genehmigungen für Schwer- und Sondertransporte. Sprechen Sie uns für ein individuelles Angebot an.'
-    },
-    {
-      question: 'Wie funktioniert das Live-Tracking?',
-      answer: 'Sie erhalten einen persönlichen Zugang zu unserem Tracking-System. Dort können Sie jederzeit den aktuellen Standort und Status Ihrer Sendung einsehen.'
-    },
-    {
       question: 'Bieten Sie auch internationale Transporte an?',
-      answer: 'Ja, wir transportieren Fahrzeuge in ganz Europa und weltweit. Durch unser Partnernetzwerk können wir auch interkontinentale Transporte abwickeln.'
+      answer: 'Ja, wir transportieren Fahrzeuge deutschlandweit sowie in angrenzende Nachbarländer nach Absprache.'
+    },
+    {
+      question: 'Was kostet die Fahrzeuglagerung?',
+      answer: 'Die Kosten für die Lagerung im Compound Dortmund richten sich nach Dauer und Fahrzeugtyp. Kontaktieren Sie uns für ein individuelles Angebot.'
     }
   ];
 
@@ -75,7 +71,7 @@ export default function Leistungen() {
             Unsere Leistungen
           </h1>
           <p className="text-xl max-w-3xl mx-auto opacity-90">
-            Professionelle Fahrzeuglogistik für jede Anforderung – von Standardtransporten bis zu komplexen Spezialaufträgen
+            Professionelle Fahrzeuglogistik für Händler, OEMs und Leasingunternehmen
           </p>
         </div>
       </section>

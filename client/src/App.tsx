@@ -8,9 +8,7 @@ import Footer from "@/components/Footer";
 import MobileBottomBar from "@/components/MobileBottomBar";
 import Home from "@/pages/Home";
 import Leistungen from "@/pages/Leistungen";
-import Referenzen from "@/pages/Referenzen";
 import UeberUns from "@/pages/UeberUns";
-import Jobs from "@/pages/Jobs";
 import Kontakt from "@/pages/Kontakt";
 import Impressum from "@/pages/Impressum";
 import Datenschutz from "@/pages/Datenschutz";
@@ -21,9 +19,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/leistungen" component={Leistungen} />
-      <Route path="/referenzen" component={Referenzen} />
       <Route path="/ueber-uns" component={UeberUns} />
-      <Route path="/jobs" component={Jobs} />
       <Route path="/kontakt" component={Kontakt} />
       <Route path="/impressum" component={Impressum} />
       <Route path="/datenschutz" component={Datenschutz} />

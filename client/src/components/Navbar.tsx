@@ -6,9 +6,7 @@ import logoUrl from '@assets/Colorlogonobackground_1759595577821.png';
 
 const navItems = [
   { label: 'Leistungen', path: '/leistungen' },
-  { label: 'Referenzen', path: '/referenzen' },
   { label: 'Über uns', path: '/ueber-uns' },
-  { label: 'Jobs', path: '/jobs' },
   { label: 'Kontakt', path: '/kontakt' },
 ];
 
@@ -44,7 +42,7 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center gap-3">
             <Button variant="outline" asChild data-testid="button-call-desktop">
-              <a href="tel:+49XXXXXXXXX">Jetzt anrufen</a>
+              <a href="tel:+4923118983985">Jetzt anrufen</a>
             </Button>
             <Button className="bg-hlf-gradient text-white" asChild data-testid="button-quote-desktop">
               <Link href="/kontakt">Angebot anfordern</Link>

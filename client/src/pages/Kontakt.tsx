@@ -26,7 +26,7 @@ export default function Kontakt() {
     const fd = new FormData(form);
 
     // Web3Forms Pflichtfelder
-    fd.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY || '358dc6fa-7d0f-4b8d-ad94-2c54a7439145');
+    fd.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY || 'd0eec8a6-ef72-4616-83a2-e50fed19ca96');
     fd.append('from_name', 'HALFMANN Logistics Website');
     fd.append('subject', 'Neue Kontaktanfrage von HALFMANN Logistics');
 
@@ -42,19 +42,21 @@ export default function Kontakt() {
       if (data?.success) {
         toast({ title: 'Nachricht gesendet!', description: 'Wir melden uns in Kürze bei Ihnen.' });
         form.reset();
-      } else if (data?.message) {
-        toast({ title: 'Fehler beim Senden', description: data.message, variant: 'destructive' });
       } else {
-        // Fallback: native Submit (um Dev/CORS-Previews zu umgehen)
-        form.action = 'https://api.web3forms.com/submit';
-        form.method = 'POST';
-        form.submit();
+        // Generische Fehlermeldung ohne technische Details
+        toast({ 
+          title: 'Technischer Fehler', 
+          description: 'Das Kontaktformular ist momentan nicht verfügbar. Bitte rufen Sie uns an: 0231 18983985', 
+          variant: 'destructive' 
+        });
       }
     } catch (err: any) {
-      // Fallback: native Submit
-      form.action = 'https://api.web3forms.com/submit';
-      form.method = 'POST';
-      form.submit();
+      // Generische Fehlermeldung ohne technische Details
+      toast({ 
+        title: 'Technischer Fehler', 
+        description: 'Das Kontaktformular ist momentan nicht verfügbar. Bitte rufen Sie uns an: 0231 18983985', 
+        variant: 'destructive' 
+      });
     } finally {
       setIsSubmitting(false);
     }
