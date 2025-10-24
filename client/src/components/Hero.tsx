@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
-import { ChevronDown } from 'lucide-react';
 import heroImage from '@assets/generated_images/Vehicle_logistics_hero_image_e0151115.png';
 
 export default function Hero() {
@@ -41,10 +40,6 @@ export default function Hero() {
             </Button>
           </div>
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <ChevronDown className="h-8 w-8 text-white/60" />
       </div>
     </section>
   );
