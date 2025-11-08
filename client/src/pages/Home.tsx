@@ -2,7 +2,7 @@ import Hero from '@/components/Hero';
 import FeatureCard from '@/components/FeatureCard';
 import Steps from '@/components/Steps';
 import ContactTeaser from '@/components/ContactTeaser';
-import { Truck, Shield, Clock, Users, MessageSquare, FileCheck, CheckCircle, Eye, Zap } from 'lucide-react';
+import { Truck, Warehouse, Layers, Users, MessageSquare, FileCheck, CheckCircle, Eye, Zap, Shield } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -19,16 +19,16 @@ export default function Home() {
       features: ['Neu- und Gebrauchtwagen', 'Einzel- und Flottentransporte', 'Deutschlandweit & angrenzende Länder']
     },
     {
-      icon: Shield,
-      title: 'Versicherungsschutz',
-      description: 'Umfassender Schutz während des gesamten Transports',
-      features: ['Vollkaskoversicherung', 'Professionelle Ladungssicherung', 'Schnelles Schadenmanagement']
+      icon: Warehouse,
+      title: 'Fahrzeuglager',
+      description: 'Effiziente Lagerung für Neu- und Gebrauchtfahrzeuge',
+      features: ['Über 2.000 Stellplätze mit gesicherter Infrastruktur', 'Flexible Einlagerung – kurz- oder langfristig', 'Fahrzeugaufbereitung, Pflege und Zustandsprüfung', 'Digitale Bestandsverwaltung und transparente Prozesse']
     },
     {
-      icon: Clock,
-      title: 'Termintreue',
-      description: 'Garantierte pünktliche Lieferung zu Ihrem Wunschtermin',
-      features: ['Express-Option verfügbar', 'Live-Tracking in Echtzeit', 'Fester Ansprechpartner']
+      icon: Layers,
+      title: 'Flottenmanagement',
+      description: 'Rundum-Service für Hersteller, Händler und Vermieter',
+      features: ['Organisation und Steuerung kompletter Fahrzeugflotten', 'Logistikplanung, Zustandsberichte und Fahrzeugbewegungen', 'Individuelle Schnittstellen zu Kundensystemen', 'Ein fester Ansprechpartner für Ihre gesamte Fahrzeuglogistik']
     }
   ];
 
@@ -102,7 +102,7 @@ export default function Home() {
     },
     {
       question: 'Gibt es Lager- oder Standflächen?',
-      answer: 'Ja. Fahrzeuglager/Compound Dortmund für kurz- bis mittelfristige Zwischenlagerung.'
+      answer: 'Auf mehr als 2.000 Stellplätzen bewirtschaften wir Fahrzeuge unterschiedlicher Hersteller und Flottenbetreiber.'
     }
   ];
 
