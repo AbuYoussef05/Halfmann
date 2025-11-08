@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logoUrl from '@assets/Colorlogonobackground_1759595577821.png';
+import logoUrl from '@assets/halfmann-logistics-logo.svg';
 
 const navItems = [
   { label: 'Leistungen', path: '/leistungen' },
@@ -19,7 +19,7 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 py-4" aria-label="Hauptnavigation">
         <div className="flex items-center justify-between">
           <Link href="/" className="focus:outline-none focus:ring-2 focus:ring-hlf-blue-500 rounded-md" data-testid="link-home">
-            <img src={logoUrl} alt="HALFMANN Logistics" className="h-10 w-auto" />
+            <img src={logoUrl} alt="HALFMANN Logistics - Professionelle Fahrzeuglogistik" className="h-10 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">

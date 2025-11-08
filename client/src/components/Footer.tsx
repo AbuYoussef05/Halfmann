@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import logoUrl from '@assets/Colorlogonobackground_1759595577821.png';
+import logoUrl from '@assets/halfmann-logistics-logo.svg';
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
-            <img src={logoUrl} alt="HALFMANN Logistics" className="h-10 w-auto mb-6 brightness-0 invert" />
+            <img src={logoUrl} alt="HALFMANN Logistics - Professionelle Fahrzeuglogistik" className="h-10 w-auto mb-6 brightness-0 invert" />
             <p className="text-sm text-white/80 mb-4">
               Sichere Fahrzeuglogistik – termingenau, transparent, europaweit.
             </p>
@@ -42,7 +42,7 @@ export default function Footer() {
                     Hohestraße 111<br />44139 Dortmund
                   </div>
                   <div>
-                    <span className="font-semibold">Compound:</span><br />
+                    <span className="font-semibold">Fahrzeuglager:</span><br />
                     Treibstraße 30<br />44147 Dortmund
                   </div>
                 </div>

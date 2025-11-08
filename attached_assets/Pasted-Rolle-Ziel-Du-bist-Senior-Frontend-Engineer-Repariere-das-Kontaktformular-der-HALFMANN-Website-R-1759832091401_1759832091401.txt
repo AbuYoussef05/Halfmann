@@ -1,0 +1,199 @@
+Rolle & Ziel
+Du bist Senior Frontend Engineer. Repariere das Kontaktformular der HALFMANN-Website (React + Vite + Tailwind, shadcn/ui), ohne am Design etwas zu ändern.
+Nutze Web3Forms mit FormData POST (keine JSON-Header), lies den API-Key aus .env (VITE_WEB3FORMS_KEY), füge Honeypot + Zeitfalle + DSGVO-Checkbox ein und bereite das Projekt für statisches Hosting auf one.com vor (Build → dist/).
+
+1) Änderungen an src/pages/Kontakt.(tsx|jsx)
+
+Kein JSON-Fetch mehr! Umstellen auf FormData-POST an https://api.web3forms.com/submit ohne eigene Headers.
+
+Design unverändert lassen: nur Funktionslogik und name-Attribute ergänzen.
+
+Honeypot als unsichtbares Textfeld name="website" einfügen.
+
+Zeitfalle: Submit erst erlauben, wenn seit erstem Fokus ≥ 3 s vergangen sind (sonst Toast „Zu schnell“ und Abbruch).
+
+DSGVO-Checkbox (required) mit Link /datenschutz hinzufügen (falls schon vorhanden, belassen).
+
+Fehler vom Web3Forms-Response (data.message) im Toast anzeigen.
+
+Nach Erfolg: form.reset() + Erfolgstoast.
+
+Unbenutzte Imports entfernen (z. B. Clock, falls vorhanden).
+
+Ersetze die Komponente durch diese Version (Inhalte/Styles identisch lassen):
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+import { Phone, Mail, MapPin } from 'lucide-react';
+
+export default function Kontakt() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Zeitfalle: mindestens 3s seit erstem Fokus
+    const started = Number(localStorage.getItem('formStartTs') || 0);
+    if (!started || Date.now() - started < 3000) {
+      toast({ title: 'Zu schnell', description: 'Bitte erneut versuchen.' });
+      return;
+    }
+
+    setIsSubmitting(true);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Web3Forms Pflichtfelder
+    fd.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY || 'PLEASE_SET_VITE_WEB3FORMS_KEY');
+    fd.append('from_name', 'HALFMANN Logistics Website');
+    fd.append('subject', 'Neue Kontaktanfrage von HALFMANN Logistics');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: fd // keine eigenen Header setzen!
+      });
+
+      let data: any = {};
+      try { data = await res.json(); } catch {}
+
+      if (data?.success) {
+        toast({ title: 'Nachricht gesendet!', description: 'Wir melden uns in Kürze bei Ihnen.' });
+        form.reset();
+        localStorage.removeItem('formStartTs');
+      } else if (data?.message) {
+        toast({ title: 'Fehler beim Senden', description: data.message, variant: 'destructive' });
+      } else {
+        // Fallback: native Submit (um Dev/CORS-Previews zu umgehen)
+        form.action = 'https://api.web3forms.com/submit';
+        form.method = 'POST';
+        form.submit();
+      }
+    } catch (err: any) {
+      // Fallback: native Submit
+      form.action = 'https://api.web3forms.com/submit';
+      form.method = 'POST';
+      form.submit();
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <main id="main-content" className="pt-24">
+      <section className="py-16 md:py-24 bg-hlf-gradient text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Kontakt</h1>
+          <p className="text-xl max-w-3xl mx-auto opacity-90">
+            Wir freuen uns auf Ihre Anfrage und beraten Sie gerne persönlich
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div>
+              <h2 className="text-3xl font-bold text-hlf-blue-900 mb-8">Senden Sie uns eine Nachricht</h2>
+
+              <form
+                onSubmit={handleSubmit}
+                onFocus={() => localStorage.setItem('formStartTs', String(Date.now()))}
+                className="space-y-6"
+              >
+                {/* Honeypot (unsichtbar) */}
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-hlf-gray-900 mb-2">Name *</label>
+                  <Input id="name" name="name" type="text" required data-testid="input-name" />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-hlf-gray-900 mb-2">E-Mail *</label>
+                  <Input id="email" name="email" type="email" required data-testid="input-email" />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-hlf-gray-900 mb-2">Telefon</label>
+                  <Input id="phone" name="phone" type="tel" data-testid="input-phone" />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-hlf-gray-900 mb-2">Ihre Nachricht *</label>
+                  <Textarea id="message" name="message" required rows={6} data-testid="input-message" />
+                </div>
+
+                {/* DSGVO */}
+                <label className="flex items-start gap-3 text-sm">
+                  <input type="checkbox" required className="mt-1" />
+                  <span>
+                    Ich stimme der Verarbeitung meiner Daten gemäß{' '}
+                    <a href="/datenschutz" className="underline text-hlf-blue-700">Datenschutzerklärung</a> zu.
+                  </span>
+                </label>
+
+                <Button type="submit" size="lg" className="bg-hlf-gradient text-white w-full" disabled={isSubmitting} data-testid="button-submit">
+                  {isSubmitting ? 'Wird gesendet…' : 'Nachricht senden'}
+                </Button>
+              </form>
+            </div>
+
+            {/* Rechte Spalte unverändert (Kontaktinfos) */}
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-3xl font-bold text-hlf-blue-900 mb-8">Kontaktinformationen</h2>
+              </div>
+
+              <Card className="p-6">
+                {/* … (deine bestehenden Blöcke unverändert lassen) … */}
+                {/* Telefon, E-Mail, Verwaltung, Compound */}
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+2) .env anlegen (Build-Zeit, Vite)
+
+Lege im Projekt-Root eine Datei .env mit folgendem Inhalt an (oder setze es in Replit unter Secrets):
+
+VITE_WEB3FORMS_KEY=DEIN_ACCESS_KEY
+
+
+Wichtig: .env nicht deployen; nur der gebaute dist/-Output kommt zu one.com.
+
+3) Build & Upload für one.com
+
+Build:
+
+npm run build
+
+
+Lade den Inhalt von dist/ nach /public_html/ bei one.com hoch (Dateimanager/FTP).
+
+Fertig.
+
+Akzeptanzkriterien
+
+Formular sendet erfolgreich über Web3Forms (Success-Toast, Felder geleert).
+
+Keine JSON-Header; Request ist multipart/form-data via FormData.
+
+Honeypot (Textfeld website) und Zeitfalle (≥3 s) aktiv.
+
+DSGVO-Checkbox vorhanden (required).
+
+API-Key wird aus import.meta.env.VITE_WEB3FORMS_KEY gelesen.
+
+Build läuft, Design/Styles unverändert.
+
+Optionaler Fallback: Bei Dev/CORS-Problemen erfolgt native Submit.

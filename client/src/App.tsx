@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileBottomBar from "@/components/MobileBottomBar";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home";
 import Leistungen from "@/pages/Leistungen";
 import UeberUns from "@/pages/UeberUns";
@@ -16,15 +17,18 @@ import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/leistungen" component={Leistungen} />
-      <Route path="/ueber-uns" component={UeberUns} />
-      <Route path="/kontakt" component={Kontakt} />
-      <Route path="/impressum" component={Impressum} />
-      <Route path="/datenschutz" component={Datenschutz} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/leistungen" component={Leistungen} />
+        <Route path="/ueber-uns" component={UeberUns} />
+        <Route path="/kontakt" component={Kontakt} />
+        <Route path="/impressum" component={Impressum} />
+        <Route path="/datenschutz" component={Datenschutz} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 

@@ -1,0 +1,179 @@
+PROMPT: „HALFMANN – Überarbeitung nach Kundenbriefing“
+
+Rolle & Ziel
+Du bist Senior Frontend Engineer & UX-Designer. Wende die folgenden Inhalts- und Strukturänderungen auf die HALFMANN-Website (React/Vite/Tailwind) an.
+Wichtig: Mobile-first, AA-Kontrast, saubere H-Hierarchie, keine leeren Platzhalter.
+
+1) Homepage
+1.1 „Transporte pro Jahr?“
+
+Komplett entfernen.
+
+Ersetzen durch „Stärken ohne Zahlen“ (Icon-Karten, 3–4 Stück):
+
+Engagiertes Team – Dynamische Spezialisten mit Leidenschaft für Fahrzeuglogistik und höchste Servicequalität.
+
+Transparente Abwicklung – Fester Ansprechpartner, proaktive Status-Updates, dokumentierte Übergaben.
+
+Flexible Lösungen – Einzel- bis Flottenbewegungen, Termin- oder Expressfahrten nach Bedarf.
+
+Sicher & zuverlässig – Gesicherte Transporte, Check-in/Check-out-Protokolle mit Fotos.
+
+Design: gleiche Card-Komponente wie bisherige Vorteile; Icon-Badge im Logo-Verlauf; Titel in --hlf-blue-900, Copy in --hlf-gray-900/80.
+
+1.2 „Warum HALFMANN“
+
+Karte „25 Jahre Erfahrung“ entfernen.
+
+Neue Karte einfügen:
+
+Titel: Engagiertes Team
+
+Text: Jung, flexibel und serviceorientiert – wir kümmern uns zuverlässig um jeden Transportauftrag.
+
+Icon-Badge: wie bestehende Karten (Logo-Gradient).
+
+1.3 ISO/Zertifikate
+
+Alle Verweise auf ISO/Zertifikate entfernen.
+
+Ersatz-Karte/Abschnitt (ohne Zertifikatssprache):
+
+Titel: OEM-konforme Prozesse
+
+Text: Klare Abläufe von Abholung bis Zustellung – mit Übergabeprotokoll, Foto-Dokumentation und fester Kommunikation.
+
+1.4 FAQ (Zielgruppe B2B – Händler/OEM/Leasing)
+
+Frage zu Baumaschinen entfernen.
+
+Erste Frage neu ausrichten (B2B statt Privatperson).
+
+Vorschlag für 6 Fragen/Antworten:
+
+Welche Fahrzeugtypen transportiert ihr?
+PKW, SUV und leichte Nutzfahrzeuge/Transporter bis 7,5 t. Keine Baumaschinen.
+
+Wie schnell erhalte ich ein Angebot?
+In der Regel am gleichen Werktag, spätestens innerhalb von 24 Stunden.
+
+Einzel- oder Sammeltransporte?
+Beides. Wir bündeln sinnvoll oder fahren dediziert – je nach Termin und Volumen.
+
+Wie laufen Abholung und Übergabe ab?
+Check-in/Check-out mit Protokoll und Foto-Dokumentation, auf Wunsch mit Zustandsbericht.
+
+Gibt es Lager- oder Standflächen?
+Ja. Fahrzeuglager/Compound Dortmund für kurz- bis mittelfristige Zwischenlagerung.
+
+Welche Regionen bedient ihr?
+Deutschlandweit sowie angrenzende Nachbarländer nach Absprache.
+
+2) Leistungen
+
+„Baumaschinen“ entfernen.
+
+Neue Leistung „Fahrzeuglagerung“ hinzufügen (eigene Karte/Section):
+
+Titel: Fahrzeuglagerung
+
+Text: Gesicherte Stellflächen im Compound Dortmund inkl. Ein-/Ausgangskontrolle, Foto-Dokumentation und kurzfristiger Verfügbarkeit.
+
+Leistung „LKW & Transporter“ auf ≤ 7,5 t begrenzen:
+
+Formulierung überall angleichen: „PKW, SUV und leichte Nutzfahrzeuge/Transporter bis 7,5 t“.
+
+(Optionale weitere Leistungen beibehalten: Überführungen/Flotten, Express/Sonderfahrten – jeweils ohne Baumaschinenbezug.)
+
+3) Über uns
+
+„Auszeichnungen“ entfernen (keine Badges/Logos anzeigen).
+
+Stattdessen Abschnitt „Unser Versprechen“ (3 kurze Bullets):
+
+Verlässlichkeit – Termine halten, sauber dokumentieren.
+
+Transparenz – Proaktive Updates und fester Ansprechpartner.
+
+Sorgfalt – Fahrzeugschutz, Foto-Dokumentation, klare Prozesse.
+
+„Unsere Geschichte“ neu formulieren (frisches Unternehmen):
+
+Titel: Frisch gegründet – mit klarem Anspruch
+
+Text: „HALFMANN wurde gegründet, um Fahrzeuglogistik einfacher und transparenter zu machen: direkte Kommunikation, saubere Übergaben und Lösungen, die zum Tagesgeschäft von Händlern, OEMs und Leasingpartnern passen.“
+
+„Zahlen“ (Mitarbeiter, Flotte etc.) entfernen.
+
+Falls ein Zeitstrahl existiert: verkürzen auf 1–2 Meilensteine (z. B. „Gründung“, „Start Compound Dortmund“) ohne Jahreszahlen, oder den Zeitstrahl komplett weglassen.
+
+4) Kontakt (verbindlich pflegen)
+
+Ersetze alle Kontakt-/Adressblöcke durch folgenden Inhalt (auch im Footer & Schema.org):
+
+Halfmann Logistics GmbH
+Verwaltung / Hauptadresse
+Hohestraße 111, 44139 Dortmund
+
+Fahrzeuglager / Compound
+Treibstraße 30, 44147 Dortmund
+
+E-Mail: info@hlogistics.de
+
+Telefon: 0231 18983985
+
+Technisch:
+
+tel:-Link → tel:+4923118983985
+
+mailto:-Link → mailto:info@hlogistics.de
+
+Optional Kartenlinks (Platzhalter):
+
+Verwaltung: https://maps.google.com/?q=Hohestraße%20111%2C%2044139%20Dortmund
+
+Compound: https://maps.google.com/?q=Treibstraße%2030%2C%2044147%20Dortmund
+
+5) Cleaning & Konsistenz
+
+Alle Vorkommen von „Baumaschinen“ entfernen (Texte, FAQs, Metas).
+
+Alle Vorkommen von ISO/Zertifikatssprache entfernen.
+
+Zahlen/„Transporte pro Jahr“ entfernen (keine Metrik-Kacheln).
+
+Zielgruppe in Copy durchgängig B2B (Gebrauchtwagenhändler, OEMs, Leasingunternehmen).
+
+Prüfe Buttons/Links nach den Änderungen (keine toten Routen).
+
+6) Design-Details (belassen/angleichen)
+
+Karten: rounded-2xl shadow-lg p-6 md:p-8, Icon-Badge im Logo-Gradient.
+
+Überschriften: text-[--hlf-blue-900], Body text-[--hlf-gray-900]/80.
+
+Section-Spacing: py-16 (mobile) / py-24 (desktop).
+
+Keine neuen Farben einführen; CI wie definiert belassen.
+
+7) SEO/A11y nach Änderung
+
+Title/Meta Description der Seiten neu generieren (ohne „ISO“, ohne Zahlen-Metriken).
+
+Alt-Texte prüfen/ergänzen (keine Platzhalterfloskeln).
+
+Schema.org Organization + PostalAddress für beide Standorte aktualisieren.
+
+8) Akzeptanzkriterien
+
+Alle oben genannten Text- und Strukturänderungen umgesetzt.
+
+Keine Erwähnung von „Baumaschinen“, „ISO“, „25 Jahre“, „Transporte pro Jahr“.
+
+Leistungen zeigen „Fahrzeuglagerung“ und die ≤ 7,5 t-Begrenzung klar.
+
+FAQ spiegelt B2B-Zielgruppe wider.
+
+Kontaktbereich + Footer mit den neuen Daten, Links funktionieren.
+
+Responsive geprüft (360–1440 px), Kontraste AA, keine Fehler in der Konsole.

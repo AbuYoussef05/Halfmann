@@ -14,7 +14,7 @@ export default function FeatureCard({ icon: Icon, title, description, features }
       <div className="rounded-lg bg-hlf-gradient p-3 w-fit mb-4">
         <Icon className="h-6 w-6 text-white" />
       </div>
-      <h3 className="text-xl font-semibold text-hlf-blue-900 mb-3" data-testid={`text-feature-title-${title.toLowerCase().replace(/\s+/g, '-')}`}>
+      <h3 className="text-xl font-semibold text-hlf-blue-900 mb-3 whitespace-nowrap" data-testid={`text-feature-title-${title.toLowerCase().replace(/\s+/g, '-')}`}>
         {title}
       </h3>
       <p className="text-hlf-gray-600 mb-4 leading-relaxed">

@@ -8,7 +8,7 @@ export default function ContactTeaser() {
     <Card className="p-8 bg-hlf-gradient text-white border-0" data-testid="card-contact-teaser">
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-contact-teaser-title">
-          Bereit für Ihren Transport?
+          Ihr Partner für Fahrzeuglogistik
         </h2>
         <p className="text-xl text-white/90 mb-8">
           Kontaktieren Sie uns für ein individuelles Angebot

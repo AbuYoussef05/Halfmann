@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
-import heroImage from '@assets/generated_images/Vehicle_logistics_hero_image_e0151115.png';
+import heroImage from '@assets/generated_images/Car_carrier_truck_close-up_bb06d174.png';
 
 export default function Hero() {
   return (
