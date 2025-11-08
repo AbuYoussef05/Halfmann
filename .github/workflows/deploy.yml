@@ -3,46 +3,56 @@ name: Deploy Vite to GitHub Pages
 on:
   push:
     branches: [ main ]
-   workflow_dispatch:
+  workflow_dispatch:   # ⇦ korrekt ausgerichtet
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Repository auschecken
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Node.js installieren
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      # 3️⃣ Abhängigkeiten installieren
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # 4️⃣ Projekt bauen
       - name: Build Vite project
         run: npm run build
 
-      # 5️⃣ 404.html für React Router erzeugen
-      - name: Create 404.html fallback
-        run: cp dist/public/index.html dist/public/404.html
+      - name: Create 404.html fallback (SPA)
+        run: |
+          cp dist/index.html dist/404.html || true
+          touch dist/.nojekyll
 
-      # 6️⃣ Upload für GitHub Pages vorbereiten
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/public
+          path: dist
+          name: site-dist
 
-      # 7️⃣ Deploy auf GitHub Pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: site-dist
